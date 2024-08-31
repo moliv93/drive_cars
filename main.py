@@ -193,13 +193,14 @@ class Car:
                     evade = True
                     colided_wall = wall
                     break
-        for wall in self.circuito.get('walls'):
-            if line_circle_collision(wall[0], wall[1], next_center, CAR_RADIUS):
-                collided = True
-                break
+        else:
+            for wall in self.circuito.get('walls'):
+                if line_circle_collision(wall[0], wall[1], next_center, CAR_RADIUS):
+                    collided = True
+                    break
         if evade:
             self.rect.center += (self.circle_center -
-             projection_point_on_segment(wall[0], wall[1], self.circle_center)) * 0.1
+             projection_point_on_segment(wall[0], wall[1], self.circle_center)) * 0.04
             self.circle_center = Vector2(self.rect.center)
         # Atualizar a posição do carro com ou sem colisão
         if not collided:
